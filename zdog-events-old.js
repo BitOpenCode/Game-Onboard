@@ -1,4 +1,4 @@
-// namespace
+// Zdog Spooky House Events Scene
 window.ZdogSpookyHouse = {
   wobbling: true,
   sceneY: 12,
@@ -14,6 +14,19 @@ window.ZdogSpookyHouse = {
     fog: 'hsla(230, 60%, 80%, 0.4)',
     paintjob: '#d59c55',
   }
+};
+
+// Extend function
+Zdog.extend = function( target, source ) {
+  for ( var key in source ) {
+    target[key] = source[key];
+  }
+  return target;
+};
+
+// Ease in out function
+Zdog.easeInOut = function( t ) {
+  return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
 };
 
 // ------------------------- bones ------------------------- //
@@ -79,6 +92,7 @@ ZdogSpookyHouse.addBones = function( options ) {
   });
 
 };
+
 // ------------------------- car & road ------------------------- //
 
 ZdogSpookyHouse.addCarRoad = function( options ) {
@@ -211,9 +225,9 @@ ZdogSpookyHouse.addCarRoad = function( options ) {
   });
 
   function animate( progress ) {
-    carRotor.rotate.y = Zdog.easeInOut( progress/4 % 1 ) * Zdog.TAU + Zdog.TAU * 3/8;
-    carAnchor.rotate.x = Math.sin( progress * Zdog.TAU * 2 ) * 0.1;
-    carAnchor.translate.y = Math.sin( progress * Zdog.TAU * 1.5 ) * 2 + carAnchorY;
+    carRotor.rotate.y = Zdog.easeInOut( progress/4 % 1 ) * TAU + TAU * 3/8;
+    carAnchor.rotate.x = Math.sin( progress * TAU * 2 ) * 0.1;
+    carAnchor.translate.y = Math.sin( progress * TAU * 1.5 ) * 2 + carAnchorY;
   }
 
   return {
@@ -221,6 +235,7 @@ ZdogSpookyHouse.addCarRoad = function( options ) {
   };
 
 };
+
 // ------------------------- cats ------------------------- //
 
 ZdogSpookyHouse.addCats = function( options ) {
@@ -318,6 +333,7 @@ ZdogSpookyHouse.addCats = function( options ) {
   });
 
 };
+
 // ------------------------- fogMonster ------------------------- //
 
 ZdogSpookyHouse.addFogMonster = function( options ) {
@@ -388,255 +404,7 @@ ZdogSpookyHouse.addFogMonster = function( options ) {
   };
 
 };
-// ------------------------- addHouse ------------------------- //
 
-ZdogSpookyHouse.addHouse = function( options ) {
-
-  var TAU = Zdog.TAU;
-  var color = ZdogSpookyHouse.color;
-
-  var eastWestWallRects = [];
-  var southWallRects = [];
-
-  function addEastWestWallRect( rect ) {
-    eastWestWallRects.push( rect );
-  }
-
-  function addSouthWallRect( rect ) {
-    southWallRects.push( rect );
-  }
-
-  var house = new Zdog.Anchor({
-    addTo: options.addTo,
-    translate: { x: 0, y: -8, z: -6 },
-  });
-
-  var wallPanelOptions = {
-    addTo: house,
-    width: 12,
-    height: 12,
-    stroke: options.stroke,
-    fill: true,
-    backface: color.deep,
-  };
-
-  var southWallPanelOptions = Object.assign( {
-    color: color.light,
-  }, wallPanelOptions );
-
-  // south wall, front door
-  var frontDoorGroup = new Zdog.Group({
-    addTo: house,
-    translate: { z: 24 },
-  });
-
-  addSouthWallRect( new Zdog.Rect( Object.assign( {}, southWallPanelOptions, {
-    addTo: frontDoorGroup,
-  }) ) );
-
-  new Zdog.Rect({
-    addTo: frontDoorGroup,
-    width: 6,
-    height: 8,
-    translate: { y: 2 },
-    color: color.dark,
-    fill: true,
-    stroke: false,
-  });
-
-  ZdogSpookyHouse.getWallPanel({ // south wall, 2nd floor
-    wall: Object.assign( {
-      translate: { y: -12, z: 24 }
-    }, southWallPanelOptions ),
-    pane: color.medium,
-    wallRectCallback: addSouthWallRect,
-  });
-
-  ZdogSpookyHouse.getWallPanel({ // 3rd floor, window on
-    wall: Object.assign( {
-      translate: { y: -24, z: 24 },
-    }, southWallPanelOptions ),
-    pane: color.highlight,
-    wallRectCallback: addSouthWallRect,
-  });
-
-  var eastWallPanelOptions = Object.assign( {
-    color: color.medium,
-    rotate: { y: -TAU/4 },
-  }, wallPanelOptions );
-
-  var westWallPanelOptions = Object.assign( {
-    color: color.medium,
-    rotate: { y: TAU/4 },
-  }, wallPanelOptions );
-
-  // entrance side facing east
-  var eastWallSquare = new Zdog.Rect( Object.assign( {}, eastWallPanelOptions, {
-    translate: { x: 6, z: 18, },
-  }));
-  addEastWestWallRect( eastWallSquare );
-  addEastWestWallRect( eastWallSquare.copy({ // 2nd floor
-    translate: { x: 6, y: -12, z: 18, },
-  }) );
-  addEastWestWallRect( eastWallSquare.copy({ // 3rd floor
-    translate: { x: 6, y: -24, z: 18, },
-  }) );
-
-  // entrance west
-  var westWallSquare = eastWallSquare.copy({
-    translate: { x: -6, z: 18, },
-    rotate: { y: TAU/4 },
-  });
-  addEastWestWallRect( westWallSquare );
-  addEastWestWallRect( westWallSquare.copy({ // 2nd floor
-    translate: { x: -6, y: -12, z: 18, },
-  }) );
-  addEastWestWallRect( westWallSquare.copy({ // 3rd floor
-    translate: { x: -6, y: -24, z: 18, },
-  }) );
-
-  // entrance roof
-  var entranceRoof = new Zdog.Anchor({
-    addTo: house,
-    translate: { y: -36, z: 18 },
-  });
-
-  var entranceRoofPanel = new Zdog.Shape({
-    addTo: entranceRoof,
-    path: [
-      { x: -8, y:  6 },
-      { x:  8, y:  6 },
-      { x:  4, y: -6, z: -4 },
-      { x: -4, y: -6, z: -4 },
-    ],
-    translate: { z: 8 },
-    stroke: options.stroke,
-    fill: true,
-    color: color.dark,
-  });
-  entranceRoofPanel.copy({
-    rotate: { y: TAU/4 },
-    translate: { x: -8 },
-  });
-  entranceRoofPanel.copy({
-    rotate: { y: TAU/2 },
-    translate: { z: -8 },
-    color: color.deep,
-  });
-  entranceRoofPanel.copy({
-    rotate: { y: TAU * 3/4 },
-    translate: { x: 8 },
-    color: color.deep,
-  });
-  // roof cap
-  new Zdog.Rect({
-    addTo: entranceRoof,
-    width: 8,
-    height: 8,
-    rotate: { x: -TAU/4 },
-    translate: { y: -6 },
-    stroke: options.stroke,
-    fill: true,
-    color: color.dark,
-  });
-
-  function animate( progress, rotation ) {
-    var degrees = Math.abs( Math.round( rotation.y / TAU * 360 ) - 180 );
-    var isLightOn = degrees <= 50 || ( degrees >= 60 && degrees <= 65 );
-    var eastWestBackface = isLightOn ? color.highlight : color.deep;
-    var southBackface = isLightOn ? true : color.deep;
-
-    eastWestWallRects.forEach( function( rect ) {
-      rect.backface = eastWestBackface;
-    });
-    southWallRects.forEach( function( rect ) {
-      rect.backface = southBackface;
-    });
-  }
-
-  return {
-    shape: house,
-    animate: animate,
-  };
-
-};
-// ------------------------- getConeTree ------------------------- //
-
-ZdogSpookyHouse.getConeTree = function( options ) {
-
-  Zdog.extend = function( target, source ) {
-    for ( var key in source ) {
-      target[key] = source[key];
-    }
-    return target;
-  };
-
-  Zdog.extend( options, {
-    rotate: { x: Zdog.TAU/4 },
-    stroke: false,
-    color: ZdogSpookyHouse.color.deep,
-  });
-
-  var treeCone = new Zdog.Cone( options );
-  treeCone.copy({
-    addTo: treeCone,
-    rotate: null,
-    translate: { z: Math.round( options.length /2 ) },
-  });
-  
-  return treeCone;
-};
-// ------------------------- getGraveIsland ------------------------- //
-
-ZdogSpookyHouse.getGraveIsland = function( options ) {
-  var TAU = Zdog.TAU;
-  var color = ZdogSpookyHouse.color;
-
-  var island = new Zdog.Anchor({
-    addTo: options.addTo,
-    translate: options.translate,
-  });
-
-  var size = 9;
-
-  ZdogSpookyHouse.getPyramid({
-    addTo: island,
-    scale: { x: size, y: -size, z: size },
-    color: color.deep,
-    snub: options.snub,
-  });
-
-  new Zdog.Rect({
-    width: size*2,
-    height: size*2,
-    addTo: island,
-    rotate: { x: TAU/4 },
-    color: color.dark,
-    stroke: 4,
-    fill: true,
-  });
-
-  // tombstone
-  var tombstone = new Zdog.Rect({
-    addTo: island,
-    width: 4,
-    height: 4,
-    translate: { x: -4, y: -6 },
-    rotate: { y: TAU/4 },
-    stroke: 3,
-    color: color.medium,
-  });
-
-  new Zdog.Ellipse({
-    addTo: tombstone,
-    diameter: 4,
-    translate: { y: -2 },
-    stroke: 3,
-    color: color.medium,
-  });
-
-  return island;
-};
 // ------------------------- getPyramid ------------------------- //
 
 ( function() {
@@ -709,72 +477,118 @@ ZdogSpookyHouse.getGraveIsland = function( options ) {
   };
 
 })();
-// ------------------------- getWallPanel ------------------------- //
 
-( function() {
+// ------------------------- getConeTree ------------------------- //
 
-  var wallChildProperties = [ 'color', 'stroke', 'fill', 'width', 'height',
-      'backface' ];
+ZdogSpookyHouse.getConeTree = function( options ) {
 
-  ZdogSpookyHouse.getWallPanel = function( options ) {
-    var wallPanel;
-    if ( !options.pane ) {
-      wallPanel = new Zdog.Rect( options.wall );
-      if ( options.wallRectCallback ) {
-        options.wallRectCallback( wallPanel );
-      }
-    } else {
-      wallPanel = getWallPanelGroup( options );
-    }
-    return wallPanel;
+  Zdog.extend( options, {
+    rotate: { x: Zdog.TAU/4 },
+    stroke: false,
+    color: ZdogSpookyHouse.color.deep,
+  });
+
+  var treeCone = new Zdog.Cone( options );
+  treeCone.copy({
+    addTo: treeCone,
+    rotate: null,
+    translate: { z: Math.round( options.length /2 ) },
+  });
+  
+  return treeCone;
+};
+
+// ------------------------- getGraveIsland ------------------------- //
+
+ZdogSpookyHouse.getGraveIsland = function( options ) {
+  var TAU = Zdog.TAU;
+  var color = ZdogSpookyHouse.color;
+
+  var island = new Zdog.Anchor({
+    addTo: options.addTo,
+    translate: options.translate,
+  });
+
+  var size = 9;
+
+  ZdogSpookyHouse.getPyramid({
+    addTo: island,
+    scale: { x: size, y: -size, z: size },
+    color: color.deep,
+    snub: options.snub,
+  });
+
+  new Zdog.Rect({
+    width: size*2,
+    height: size*2,
+    addTo: island,
+    rotate: { x: TAU/4 },
+    color: color.dark,
+    stroke: 4,
+    fill: true,
+  });
+
+  // tombstone
+  var tombstone = new Zdog.Rect({
+    addTo: island,
+    width: 4,
+    height: 4,
+    translate: { x: -4, y: -6 },
+    rotate: { y: TAU/4 },
+    stroke: 3,
+    color: color.medium,
+  });
+
+  new Zdog.Ellipse({
+    addTo: tombstone,
+    diameter: 4,
+    translate: { y: -2 },
+    stroke: 3,
+    color: color.medium,
+  });
+
+  return island;
+};
+
+// Simplified house and scene setup
+ZdogSpookyHouse.addHouse = function( options ) {
+  var TAU = Zdog.TAU;
+  var color = ZdogSpookyHouse.color;
+
+  var house = new Zdog.Anchor({
+    addTo: options.addTo,
+    translate: { x: 0, y: -8, z: -6 },
+  });
+
+  var wallPanelOptions = {
+    addTo: house,
+    width: 12,
+    height: 12,
+    stroke: options.stroke,
+    fill: true,
+    backface: color.deep,
   };
 
-  function getWallPanelGroup( options ) {
-    var group = new Zdog.Group( options.wall );
+  new Zdog.Rect( Object.assign( {
+    color: color.light,
+    translate: { z: 24 },
+  }, wallPanelOptions ) );
 
-    // wall panel
-    var panelOptions = wallChildProperties.reduce( function( wallOptions, prop ) {
-      wallOptions[ prop ] = options.wall[ prop ];
-      return wallOptions;
-    }, {} );
-    panelOptions.addTo = group;
-
-    // wall rect
-    var wallRect = new Zdog.Rect( panelOptions );
-    if ( options.wallRectCallback ) {
-      options.wallRectCallback( wallRect );
-    }
-
-    // shutters
-    new Zdog.Rect({
-      addTo: group,
-      width: 8,
-      height: 6,
-      translate: { y: -1 },
-      color: ZdogSpookyHouse.color.dark,
-      fill: true,
-      stroke: false,
-      backface: false,
-    });
-    // window
-    new Zdog.Rect({
-      addTo: group,
-      width: 4,
-      height: 6,
-      translate: { y: -1 },
-      color: options.pane,
-      fill: true,
-      stroke: false,
-    });
-
-    return group;
-
+  function animate( progress, rotation ) {
+    // Simple animation
   }
 
-})();
+  return {
+    shape: house,
+    animate: animate,
+  };
+};
+
 // ------------------------- init ------------------------- //
 
 ZdogSpookyHouse.init = function( canvas ) {
+  if (!canvas) return;
+  
   var TAU = Zdog.TAU;
   var color = ZdogSpookyHouse.color;
 
@@ -823,35 +637,6 @@ ZdogSpookyHouse.init = function( canvas ) {
     color: color.darker,
   });
 
-  ZdogSpookyHouse.getPyramid({ // spike
-    addTo: centerIsland,
-    scale: { x: 12, y: -28, z: 12 },
-    translate: { x: -12, y: 18, z: 8 },
-    color: color.darker,
-    backface: false,
-  });
-
-  ZdogSpookyHouse.getPyramid({ // spike
-    addTo: centerIsland,
-    scale: { x: 8, y: -28, z: 8 },
-    translate: { x: 8, y: 8, z: -22 },
-    color: color.darker,
-    backface: false,
-  });
-
-  ZdogSpookyHouse.getLeafTree({
-    addTo: centerIsland,
-    height: 3,
-    translate: { x: -35, z: 3, },
-  });
-
-  // ------------------------- content ------------------------- //
-
-  var house = ZdogSpookyHouse.addHouse({
-    addTo: centerIsland,
-    stroke: 1/illo.zoom,
-  });
-
   ZdogSpookyHouse.addCats({
     addTo: centerIsland,
   });
@@ -869,14 +654,15 @@ ZdogSpookyHouse.init = function( canvas ) {
     addTo: scene,
   });
 
+  var house = ZdogSpookyHouse.addHouse({
+    addTo: centerIsland,
+    stroke: 1/illo.zoom,
+  });
+
   // ----- animate ----- //
 
   var ticker = 0;
   var cycleCount = 300;
-
-  Zdog.easeInOut = function( t ) {
-    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-  };
 
   function animate() {
     var progress = ticker / cycleCount;
@@ -891,7 +677,6 @@ ZdogSpookyHouse.init = function( canvas ) {
     fogMonster.animate( progress );
     carRoad.animate( progress );
     house.animate( progress, illo.rotate );
-    // bob islands
     centerIsland.translate.y = Math.sin( progress/4 * TAU ) * 4;
 
     ticker++;
@@ -903,80 +688,10 @@ ZdogSpookyHouse.init = function( canvas ) {
 
 };
 
-// ------------------------- getLeafTree ------------------------- //
-
-( function() {
-
-  var TAU = Zdog.TAU;
-  var color = ZdogSpookyHouse.color;
-
-  var branchPath = [
-    { move: { x:   0, y:  14 }},
-    { line: { x: -12, y:   2 }},
-    { move: { x:  -4, y:  10 }},
-    { line: { x: -10, y:  10 }},
-    { move: { x:  -8, y:   6 }},
-    { line: { x:  -8, y:   0 }},
-    { line: { x: -12, y:  -4 }},
-    { move: { x:   0, y:   8 }},
-    { line: { x:  -4, y:   4 }},
-    { move: { x:   0, y:   2 }},
-    { line: { x: -10, y:  -8 }},
-    { move: { x:   0, y:  -4 }},
-    { line: { x:  -4, y:  -8 }},
-    { line: { x:  -4, y: -10 }},
-    { move: { x:   0, y:  12 }},
-    { line: { x:   6, y:   6 }},
-    { line: { x:  10, y:   6 }},
-    { move: { x:   2, y:  10 }},
-    { line: { x:   8, y:  10 }},
-    { move: { x:   0, y:   6 }},
-    { line: { x:  12, y:  -6 }},
-    { move: { x:   8, y:  -2 }},
-    { line: { x:   8, y:  -8 }},
-    { move: { x:   4, y:   2 }},
-    { line: { x:  12, y:   2 }},
-    { move: { x:   0, y:   0 }},
-    { line: { x:   4, y:  -4 }},
-    { move: { x:   0, y:  -6 }},
-    { line: { x:   4, y: -10 }},
-  ];
-
-  ZdogSpookyHouse.getLeafTree = function( options ) {
-    var trunkY = -options.height;
-    Object.assign( options, {
-      path: [ { y: 0 }, { y: trunkY - 26 } ],
-      stroke: 0.5,
-      color: color.deep,
-    });
-    var trunk = new Zdog.Shape( options );
-
-    var canopy = new Zdog.Anchor({
-      addTo: trunk,
-      translate: { y: trunkY - 14 },
-      rotate: { y: -TAU/8 },
-    });
-
-    var branchA = new Zdog.Shape({
-      addTo: canopy,
-      path: branchPath,
-      closed: false,
-      stroke: 0.6,
-      color: color.deep,
-    });
-
-    branchA.copyGraph({
-      rotate: { y: TAU/4 },
-    });
-
-    return trunk;
-  };
-
-})();
-
 // Initialize when Events section is shown
 (function() {
   var zdogCanvas = null;
+  var illo = null;
   var isInitialized = false;
 
   function initZdog() {
@@ -1007,6 +722,18 @@ ZdogSpookyHouse.init = function( canvas ) {
     document.addEventListener('DOMContentLoaded', checkZdog);
   } else {
     checkZdog();
+  }
+
+  // Also try when Events section is shown
+  var originalShowSection = window.showSection;
+  if (typeof window.showSection === 'function') {
+    window.showSection = function(sectionId) {
+      var result = originalShowSection.call(this, sectionId);
+      if (sectionId === 'events') {
+        setTimeout(initZdog, 500);
+      }
+      return result;
+    };
   }
 
   // Expose init function globally
