@@ -125,26 +125,33 @@
     }
 })();
 
-// Input Animation
+// Input Animation - only if inputs exist
+(function() {
+    const inputs = document.querySelectorAll('.input');
+    
+    if (inputs && inputs.length > 0) {
+        function focusFunc() {
+            let parent = this.parentNode;
+            if (parent) {
+                parent.classList.add('focus');
+            }
+        }
 
-const inputs = document.querySelectorAll('.input');
+        function blurFunc() {
+            let parent = this.parentNode;
+            if (parent && this.value == "") {
+                parent.classList.remove('focus');
+            }
+        }
 
-function focusFunc() {
-    let parent = this.parentNode;
-    parent.classList.add('focus');
-}
-
-function blurFunc() {
-    let parent = this.parentNode;
-    if(this.value == "") {
-        parent.classList.remove('focus');
+        inputs.forEach((input) => {
+            if (input) {
+                input.addEventListener('focus', focusFunc);
+                input.addEventListener('blur', blurFunc);
+            }
+        });
     }
-}
-
-inputs.forEach((input) => {
-    input.addEventListener('focus', focusFunc);
-    input.addEventListener('blur', blurFunc);
-})
+})();
 
 // Scroll Section Active Link - only for visible sections
 (function() {
