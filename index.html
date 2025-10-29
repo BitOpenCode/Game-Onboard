@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECOS Mining Game - Лендинг</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+    <div class="nav-toggle" id="nav-toggle">
+        <i class="uil uil-bars"></i>
+    </div>
+
+    <aside class="sidebar" id="sidebar">
+        <nav class="nav">
+            <div class="nav-menu">
+                <div class="menu">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="#home" class="nav-link active-link">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#welcome" class="nav-link">Welcome Bonus</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#assets" class="nav-link">Assets</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#tips" class="nav-link">Tips & Tricks</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#guides" class="nav-link">Guides</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#community" class="nav-link">Community</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#visualizer" class="nav-link">Visualizer</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#pools" class="nav-link">BTC Game Pools</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#ambassador" class="nav-link">Ambassador Program</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#leaderboard" class="nav-link">Leaderboard</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#events" class="nav-link">Events</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#city" class="nav-link">City Screen</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="nav-close" id="nav-close">
+                <i class="uil uil-times"></i>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="main">
+        <div class="theme-toggle" id="theme-toggle">
+            <i class="uil uil-moon toggle-icon"></i>
+        </div>
+        
+        <section class="home" id="home">
+            <div class="home-container container grid">
+                <div class="home-social">
+                    <div class="home-social-links">
+                        <a href="https://www.facebook.com" target="_blank" class="home-social-link">
+                            <i class="uil uil-facebook-f"></i>
+                        </a>
+
+                        <a href="https://www.instagram.com" target="_blank" class="home-social-link">
+                            <i class="uil uil-instagram"></i>
+                        </a>
+
+                        <a href="https://telegram.org" target="_blank" class="home-social-link">
+                            <i class="uil uil-telegram-alt"></i>
+                        </a>
+                    </div>
+                </div>
+
+            <div class="home-data">
+                <h1 class="home-title">ECOS Mining Game</h1>
+                <h3 class="home-subtitle">Innovative Mining Game</h3>
+                <p class="home-description">Become part of the mining ecosystem. Study and develop in an exciting gaming universe</p>
+                <a href="#about" class="button">
+                    <i class="uil uil-info-circle button-icon"></i>
+                    Learn More
+                </a>
+            </div>
+
+            <!-- 3D Keypad -->
+            <div class="keypad">
+                <div class="keypad__base">
+                    <img src="https://assets.codepen.io/605876/keypad-base.png?format=auto&quality=86" alt="" />
+                </div>
+                <button id="key-one" class="key keypad__single keypad__single--left">
+                    <span class="key__mask">
+                        <span class="key__content">
+                            <span class="key__text"></span>
+                            <img src="https://assets.codepen.io/605876/keypad-single.png?format=auto&quality=86" alt="" />
+                            <span class="key__text key__text-2"></span>
+                            <img src="/images/btc_1.png" alt="" class="key__img key__text-2">
+                        </span>
+                    </span>
+                </button>
+                <button id="key-two" class="key keypad__single">
+                    <span class="key__mask">
+                        <span class="key__content">
+                            <img src="https://assets.codepen.io/605876/keypad-single.png?format=auto&quality=86" alt="" />
+                        </span>
+                    </span>
+                </button>
+                <button id="key-three" class="key keypad__double">
+                    <span class="key__mask">
+                        <span class="key__content">
+                            <span class="key__text"></span>
+                            <img src="https://assets.codepen.io/605876/keypad-double.png?format=auto&quality=86" alt="" />
+                        </span>
+                    </span>
+                </button>
+            </div>
+
+        </div>
+        </section>
+
+        <!-- Feature Cards Section -->
+        <section class="feature-cards section" id="feature-cards">
+            <div class="container">
+                <div class="cards-grid">
+                    <div class="feature-card feature-card-large feature-card-bonus">
+                        <div class="card-badge">New</div>
+                        <div class="bonus-content">
+                            <div class="bonus-text">
+                                <p class="bonus-subtitle">Start Mining & Get Free</p>
+                                <h2 class="bonus-title">Welcome<br>Bonus!</h2>
+                                <p class="bonus-description">We give you:</p>
+                                <ul class="bonus-assets">
+                                    <li>1 ASIC</li>
+                                    <li>1 Land</li>
+                                    <li>1 Datacenter</li>
+                                    <li>1 Energy Station</li>
+                                </ul>
+                                <p class="bonus-free">All for free!</p>
+                                <a href="#welcome" class="bonus-button">
+                                    CLAIM NOW
+                                </a>
+                            </div>
+                            <div class="bonus-visual">
+                                <img src="images/welcome-icon.png" alt="Welcome Bonus" class="bonus-gift-img">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="card-icon-3d icon-gear icon-image">
+                            <img src="images/assets-icon.png" alt="Assets" class="icon-img">
+                        </div>
+                        <h3 class="card-title">Assets</h3>
+                        <p class="card-description">Explore all available Game Assets</p>
+                        <ul class="assets-list">
+                            <li>xpBTC</li>
+                            <li>XP</li>
+                            <li>kWt</li>
+                            <li>Land</li>
+                            <li>Datacenter</li>
+                            <li>Energy Station</li>
+                            <li>Tickets</li>
+                        </ul>
+                        <a href="#assets" class="card-link">
+                            <i class="uil uil-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="card-icon-3d icon-lightning icon-image">
+                            <img src="images/tips-icon.png" alt="Tips & Tricks" class="icon-img">
+                        </div>
+                        <h3 class="card-title">Tips & Tricks</h3>
+                        <p class="card-description">Pro strategies to maximize your mining efficiency</p>
+                        <a href="#tips" class="card-link">
+                            <i class="uil uil-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="card-icon-3d icon-book icon-image">
+                            <img src="images/guides-icon.png" alt="Guides" class="icon-img">
+                        </div>
+                        <h3 class="card-title">Guides</h3>
+                        <p class="card-description">Step-by-step tutorials for all game features</p>
+                        <a href="#guides" class="card-link">
+                            <i class="uil uil-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="card-icon-3d icon-network icon-image">
+                            <img src="images/community-icon.png" alt="Community" class="icon-img">
+                        </div>
+                        <h3 class="card-title">Community</h3>
+                        <p class="card-description">Join thousands of miners in the ECOS ecosystem</p>
+                        <a href="#community" class="card-link">
+                            <i class="uil uil-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="card-icon-3d icon-chart icon-image">
+                            <img src="images/visualizer-icon.png" alt="Visualizer" class="icon-img">
+                        </div>
+                        <h3 class="card-title">Visualizer</h3>
+                        <p class="card-description">Track your mining progress in real-time</p>
+                        <a href="#visualizer" class="card-link">
+                            <i class="uil uil-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="card-icon-3d icon-network icon-image">
+                            <img src="images/pools-icon.png" alt="BTC Game Pools" class="icon-img">
+                        </div>
+                        <h3 class="card-title">BTC Game Pools</h3>
+                        <p class="card-description">Join mining pools and collaborate with other players</p>
+                        <a href="#pools" class="card-link">
+                            <i class="uil uil-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="card-icon-3d icon-network icon-image">
+                            <img src="images/amba-icon.png" alt="Ambassador Program" class="icon-img">
+                        </div>
+                        <h3 class="card-title">Ambassador Program</h3>
+                        <p class="card-description">Become an ambassador and earn exclusive rewards</p>
+                        <a href="#ambassador" class="card-link">
+                            <i class="uil uil-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="card-icon-3d icon-network icon-image">
+                            <img src="images/leader-icon.png" alt="Leaderboard" class="icon-img">
+                        </div>
+                        <h3 class="card-title">Leaderboard</h3>
+                        <p class="card-description">Compete with top miners and climb the rankings</p>
+                        <a href="#leaderboard" class="card-link">
+                            <i class="uil uil-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="card-icon-3d icon-network icon-image">
+                            <img src="images/event-icon.png" alt="Events" class="icon-img">
+                        </div>
+                        <h3 class="card-title">Events</h3>
+                        <p class="card-description">Participate in special events and tournaments</p>
+                        <a href="#events" class="card-link">
+                            <i class="uil uil-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="card-icon-3d icon-network icon-image">
+                            <img src="images/city-icon.png" alt="City Screen" class="icon-img">
+                        </div>
+                        <h3 class="card-title">City Screen</h3>
+                        <p class="card-description">Explore and manage your mining city</p>
+                        <a href="#city" class="card-link">
+                            <i class="uil uil-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about section" id="about">
+            <h2 class="section-title" data-heading="About the Game">ECOS Mining Game</h2>
+
+            <div class="about-container container grid">
+                <div class="about-img" style="background: transparent; border-radius: 0.75rem; display: flex; align-items: center; justify-content: center;">
+                    <img src="images/btc-icon.png" alt="Bitcoin" class="btc-icon-img" style="width: 100%; height: 100%; object-fit: contain;">
+                </div>
+
+                <div class="about-data">
+                    <h3 class="about-heading">What is ECOS Mining Game?</h3>
+                    <p class="about-description">ECOS Mining Game is an educational project from ECOS company, where you can mine xpBTC, develop your mining skills and build your mining hub together with the city. Players can use various strategies to earn loyalty points, bonuses and get discounts on real company products. The best players and leaders will be given the opportunity to get real BTC</p>
+
+                    <a href="#visualizer" class="button"><i class="uil uil-rocket button-icon"></i>Start Game</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Welcome Bonus Section -->
+        <section class="content-section section" id="welcome">
+            <div class="container">
+                <h2 class="section-title" data-heading="Welcome Bonus">Welcome Bonus</h2>
+                <div class="content-wrapper">
+                    <h3>Start Mining & Get Free</h3>
+                    <p>We give you:</p>
+                    <ul>
+                        <li>1 ASIC</li>
+                        <li>1 Land</li>
+                        <li>1 Datacenter</li>
+                        <li>1 Energy Station</li>
+                    </ul>
+                    <p>All for free!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Assets Section -->
+        <section class="content-section section" id="assets">
+            <div class="container">
+                <h2 class="section-title" data-heading="Assets">Assets</h2>
+                <div class="content-wrapper">
+                    <h3>Explore all available Game Assets</h3>
+                    <ul>
+                        <li>xpBTC</li>
+                        <li>XP</li>
+                        <li>kWt</li>
+                        <li>Land</li>
+                        <li>Datacenter</li>
+                        <li>Energy Station</li>
+                        <li>Tickets</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tips & Tricks Section -->
+        <section class="content-section section" id="tips">
+            <div class="container">
+                <h2 class="section-title" data-heading="Tips & Tricks">Tips & Tricks</h2>
+                <div class="content-wrapper">
+                    <h3>Pro strategies to maximize your mining efficiency</h3>
+                    <p>Learn advanced techniques and optimize your mining operations.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guides Section -->
+        <section class="content-section section" id="guides">
+            <div class="container">
+                <h2 class="section-title" data-heading="Guides">Guides</h2>
+                <div class="content-wrapper">
+                    <h3>Step-by-step tutorials for all game features</h3>
+                    <p>Comprehensive guides to help you master every aspect of ECOS Mining Game.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Section -->
+        <section class="content-section section" id="community">
+            <div class="container">
+                <h2 class="section-title" data-heading="Community">Community</h2>
+                <div class="content-wrapper">
+                    <h3>Join thousands of miners in the ECOS ecosystem</h3>
+                    <p>Connect with other players, share strategies, and grow together.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visualizer Section -->
+        <section class="content-section section" id="visualizer">
+            <div class="container">
+                <h2 class="section-title" data-heading="Visualizer">Visualizer</h2>
+                <div class="content-wrapper">
+                    <h3>Track your mining progress in real-time</h3>
+                    <p>Monitor your performance with advanced analytics and visualization tools.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BTC Game Pools Section -->
+        <section class="content-section section" id="pools">
+            <div class="container">
+                <h2 class="section-title" data-heading="BTC Game Pools">BTC Game Pools</h2>
+                <div class="content-wrapper">
+                    <h3>Join mining pools and collaborate with other players</h3>
+                    <p>Combine your resources with other miners for maximum efficiency.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ambassador Program Section -->
+        <section class="content-section section" id="ambassador">
+            <div class="container">
+                <h2 class="section-title" data-heading="Ambassador Program">Ambassador Program</h2>
+                <div class="content-wrapper">
+                    <h3>Become an ambassador and earn exclusive rewards</h3>
+                    <p>Represent ECOS Mining Game and unlock special benefits and rewards.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leaderboard Section -->
+        <section class="content-section section" id="leaderboard">
+            <div class="container">
+                <h2 class="section-title" data-heading="Leaderboard">Leaderboard</h2>
+                <div class="content-wrapper">
+                    <h3>Compete with top miners and climb the rankings</h3>
+                    <p>See where you stand among the best players in the game.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section class="content-section section" id="events">
+            <div class="container">
+                <h2 class="section-title" data-heading="Events">Events</h2>
+                <div class="content-wrapper">
+                    <h3>Participate in special events and tournaments</h3>
+                    <p>Join exciting events and compete for exclusive prizes.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- City Screen Section -->
+        <section class="content-section section" id="city">
+            <div class="container">
+                <h2 class="section-title" data-heading="City Screen">City Screen</h2>
+                <div class="content-wrapper">
+                    <h3>Explore and manage your mining city</h3>
+                    <p>Build and expand your mining infrastructure in the city view.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="footer-bg">
+                <div class="footer-container container grid">
+                    <div>
+                        <h1 class="footer-title">ECOS</h1>
+                        <span class="footer-subtitle">Mining Game</span>
+                    </div>
+
+                    <ul class="footer-links">
+                        <li>
+                            <a href="#welcome" class="footer-links">Welcome Bonus</a>
+                        </li>
+                        <li>
+                            <a href="#assets" class="footer-links">Assets</a>
+                        </li>
+                        <li>
+                            <a href="#tips" class="footer-links">Tips & Tricks</a>
+                        </li>
+                        <li>
+                            <a href="#guides" class="footer-links">Guides</a>
+                        </li>
+                        <li>
+                            <a href="#community" class="footer-links">Community</a>
+                        </li>
+                        <li>
+                            <a href="#visualizer" class="footer-links">Visualizer</a>
+                        </li>
+                        <li>
+                            <a href="#pools" class="footer-links">BTC Game Pools</a>
+                        </li>
+                        <li>
+                            <a href="#ambassador" class="footer-links">Ambassador Program</a>
+                        </li>
+                        <li>
+                            <a href="#leaderboard" class="footer-links">Leaderboard</a>
+                        </li>
+                        <li>
+                            <a href="#events" class="footer-links">Events</a>
+                        </li>
+                        <li>
+                            <a href="#city" class="footer-links">City Screen</a>
+                        </li>
+                    </ul>
+
+                    <div class="footer-socials">
+                        <a href="#" target="_blank" class="footer-social">
+                            <i class="uil uil-discord"></i>
+                        </a>
+
+                        <a href="#" target="_blank" class="footer-social">
+                            <i class="uil uil-twitter"></i>
+                        </a>
+
+                        <a href="#" target="_blank" class="footer-social">
+                            <i class="uil uil-telegram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <p class="footer-copy">&#169; <a href="#">ECOS Gaming</a>. All rights reserved</p>
+            </div>
+        </footer>
+    </main>
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mixitup/3.3.1/mixitup.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+    <script src="new.js?v=5"></script>
+</body>
+</html>
