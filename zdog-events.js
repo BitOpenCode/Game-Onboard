@@ -855,6 +855,379 @@ ZdogSpookyHouse.init = function( canvas ) {
     translate: { x: -35, z: 3, },
   });
 
+  var islandShard = new Zdog.Anchor({
+    addTo: centerIsland,
+    translate: { x: 20, y: 54, z: -16 },
+    scale: { x: 4, y: -8, z: 4 },
+  });
+
+  ZdogSpookyHouse.getPyramid({ // shard top
+    addTo: islandShard,
+    scale: { y: -1 },
+    color: color.deep,
+  });
+
+  ZdogSpookyHouse.getPyramid({ // shard bottom
+    addTo: islandShard,
+    color: color.deep,
+  });
+
+  // ------------------------- south island ------------------------- //
+
+  var southIsland = new Zdog.Group({
+    addTo: scene,
+    translate: { x: 18, z: 80 },
+    scale: ZdogSpookyHouse.hillScale,
+    updateSort: true,
+  });
+
+  var southIslandBigShapeAnchor = new Zdog.Anchor({
+    addTo: southIsland,
+    scale: { x: 24, y: 32, z: 24 },
+  });
+
+  ZdogSpookyHouse.getPyramid({
+    addTo: southIslandBigShapeAnchor,
+    color: color.dark,
+  });
+
+  ZdogSpookyHouse.getPyramid({
+    addTo: southIslandBigShapeAnchor,
+    scale: { y: -1 },
+    snub: true,
+    color: color.deep,
+  });
+
+  ZdogSpookyHouse.getPyramid({ // bottom spike
+    addTo: southIsland,
+    scale: { x: 6, y: -14, z: 6 },
+    translate: { x: -8, y: 12, z: 8 },
+    color: color.deep,
+  });
+
+  ZdogSpookyHouse.getPyramid({ // top spike
+    addTo: southIsland,
+    scale: { x: 12, y: 46, z: 12 },
+    translate: { x: -12, z: -4 },
+    color: color.dark,
+  });
+
+  ZdogSpookyHouse.getConeTree({
+    addTo: southIsland,
+    diameter: 8,
+    length: 10,
+    translate: { x: 2, y: -15, z: 18 },
+  });
+
+  ZdogSpookyHouse.getConeTree({
+    addTo: southIsland,
+    diameter: 8,
+    length: 10,
+    translate: { x: 15, y: -8, z: 16 },
+  });
+
+  ZdogSpookyHouse.getConeTree({
+    addTo: southIsland,
+    diameter: 8,
+    length: 10,
+    translate: { x: 22, y: -3, z: 5 },
+  });
+
+  // ------------------------- north island ------------------------- //
+
+  var northIslandTopColor = color.dark;
+  var northIslandBottomColor = color.deep;
+
+  var northIsland = new Zdog.Group({
+    addTo: scene,
+    translate: { x: -52, z: -64 },
+    scale: ZdogSpookyHouse.hillScale,
+    updateSort: true,
+  });
+
+  ZdogSpookyHouse.getPyramid({
+    addTo: northIsland,
+    scale: { x: 26, y: 60, z: 26 },
+    color: northIslandTopColor,
+  });
+
+  ZdogSpookyHouse.getPyramid({ // top spike
+    addTo: northIsland,
+    scale: { x: 14, y: 52, z: 14 },
+    translate: { x: 12, y: -2, z: -12 },
+    color: northIslandTopColor,
+  });
+
+  ZdogSpookyHouse.getPyramid({ // bottom
+    addTo: northIsland,
+    scale: { x: 26, y: -26, z: 26 },
+    color: northIslandBottomColor,
+  });
+
+  ZdogSpookyHouse.getPyramid({ // bottom spike
+    addTo: northIsland,
+    scale: { x: 10, y: -20, z: 10 },
+    translate: { x: 12, y: 2, z: -12 },
+    color: northIslandBottomColor,
+  });
+
+  ZdogSpookyHouse.getConeTree({
+    addTo: northIsland,
+    diameter: 8,
+    length: 10,
+    translate: { x: 18, y: -26, z: 0 },
+  });
+
+  ZdogSpookyHouse.getConeTree({
+    addTo: northIsland,
+    diameter: 8,
+    length: 10,
+    translate: { x: 32, y: -8, z: -4 },
+  });
+
+  ZdogSpookyHouse.getConeTree({
+    addTo: northIsland,
+    diameter: 8,
+    length: 10,
+    translate: { x: 10, y: -16, z: 24 },
+  });
+
+  ZdogSpookyHouse.getConeTree({
+    addTo: northIsland,
+    diameter: 8,
+    length: 10,
+    translate: { x: 0, y: -28, z: -22 },
+  });
+
+  // ------------------------- east island ------------------------- //
+
+  var eastIsland = new Zdog.Group({
+    addTo: scene,
+    translate: { x: 76, z: 36 },
+    scale: ZdogSpookyHouse.hillScale,
+    updateSort: true,
+  });
+
+  var eastPyramidSide = 20;
+
+  ZdogSpookyHouse.getPyramid({
+    addTo: eastIsland,
+    scale: { x: eastPyramidSide, y: 36, z: eastPyramidSide },
+    color: color.dark,
+  });
+
+  ZdogSpookyHouse.getPyramid({
+    addTo: eastIsland,
+    scale: { x: eastPyramidSide, y: -24, z: eastPyramidSide },
+    color: color.deep,
+    snub: true,
+  });
+
+  ZdogSpookyHouse.getConeTree({
+    addTo: eastIsland,
+    diameter: 8,
+    length: 10,
+    translate: { x: 10, y: -10, z: 18 },
+  });
+
+  ZdogSpookyHouse.getConeTree({
+    addTo: eastIsland,
+    diameter: 8,
+    length: 10,
+    translate: { x: 16, y: -16 },
+  });
+
+  ZdogSpookyHouse.getConeTree({
+    addTo: eastIsland,
+    diameter: 8,
+    length: 10,
+    translate: { x: -14, y: -18, z: -10 },
+  });
+
+  islandShard.copyGraph({
+    addTo: eastIsland,
+    scale: { x: 4, y: -6, z: 4 },
+    translate: { x: 0, y: 28, z: 2 },
+  });
+
+  // ------------------------- west island ------------------------- //
+
+  var westIsland = new Zdog.Group({
+    addTo: scene,
+    translate: { x: -78, z: -36 },
+    scale: ZdogSpookyHouse.hillScale,
+    updateSort: true,
+  });
+
+  var westPyramidSide = 26;
+  var westIslandTopColor = color.dark;
+  var westIslandBottomColor = color.deep;
+
+  ZdogSpookyHouse.getPyramid({
+    addTo: westIsland,
+    scale: { x: westPyramidSide, y: 42, z: westPyramidSide},
+    color: westIslandTopColor,
+  });
+
+  ZdogSpookyHouse.getPyramid({
+    addTo: westIsland,
+    scale: { x: westPyramidSide, y: -40, z: westPyramidSide },
+    color: westIslandBottomColor,
+    snub: true,
+  });
+
+  ZdogSpookyHouse.getPyramid({ // top spike
+    addTo: westIsland,
+    scale: { x: 14, y: 29, z: 14 },
+    translate: { x: 12, y: -2, z: -12 },
+    color: westIslandTopColor,
+  });
+
+  ZdogSpookyHouse.getPyramid({ // top spike
+    addTo: westIsland,
+    scale: { x: 16, y: 54, z: 16 },
+    translate: { x: -4, y: -2, z: -4 },
+    color: westIslandTopColor,
+  });
+
+  ZdogSpookyHouse.getConeTree({
+    addTo: westIsland,
+    diameter: 8,
+    length: 10,
+    translate: { x: -16, y: -24, z: 6 },
+  });
+
+  ZdogSpookyHouse.getConeTree({
+    addTo: westIsland,
+    diameter: 8,
+    length: 10,
+    translate: { x: -22, y: -14, z: -16 },
+  });
+
+  ZdogSpookyHouse.getConeTree({
+    addTo: westIsland,
+    diameter: 8,
+    length: 8,
+    translate: { x: -22, y: -10, z: 15 },
+  });
+
+  var westIslandShard = new Zdog.Anchor({
+    addTo: westIsland,
+    scale: { x: 6, y: 9, z: 6 },
+    translate: { x: 0, y: 40, z: 0 },
+  });
+
+  ZdogSpookyHouse.getPyramid({ // shard top
+    addTo: westIslandShard,
+    color: westIslandBottomColor,
+  });
+
+  ZdogSpookyHouse.getPyramid({ // shard bottom
+    addTo: westIslandShard,
+    scale: { y: -1.2 },
+    color: westIslandBottomColor,
+  });
+
+  westIslandShard.copyGraph({
+    scale: { x: 2, y: 4, z: 4 },
+    translate: { x: 24, y: 29, z: -8 },
+  });
+
+  // ------------------------- graves ------------------------- //
+
+  ZdogSpookyHouse.getGraveIsland({
+    addTo: scene,
+    translate: { x: 62, z: -32 },
+  });
+
+  ZdogSpookyHouse.getGraveIsland({
+    addTo: scene,
+    translate: { x: 60, z: -60 },
+  });
+
+  ZdogSpookyHouse.getGraveIsland({
+    addTo: scene,
+    translate: { x: 32, z: -64 },
+  });
+
+  // ------------------------- clouds ------------------------- //
+
+  var cloudColor = color.darker;
+
+  var cloudRotorA = new Zdog.Anchor({
+    addTo: scene,
+    translate: { y: -94 },
+  });
+
+  // big puff
+  var bigCloudPuff = new Zdog.Shape({
+    addTo: cloudRotorA,
+    translate: { z: -64 },
+    stroke: 32,
+    scale: 2,
+    color: cloudColor,
+  });
+
+  // left small puff
+  var smallCloudPuff = new Zdog.Shape({
+    addTo: bigCloudPuff,
+    translate: { x: -9, y: 4, z: 4 },
+    stroke: 16,
+    color: cloudColor,
+  });
+  smallCloudPuff.copy({
+    translate: { x: 9, y: 5, z: 6 },
+    stroke: 20,
+  });
+
+  var disk = new Zdog.RoundedRect({
+    addTo: bigCloudPuff,
+    width: 26,
+    height: 12,
+    cornerRadius: 6,
+    translate: { x: -6, y: 7, z: 4 },
+    rotate: { x: TAU/4 },
+    stroke: 6,
+    color: cloudColor,
+    fill: true,
+  });
+  disk.copy({
+    translate: { x: 6, y: 9, z: 8 },
+  });
+
+  var cloudRotorB = new Zdog.Anchor({
+    addTo: scene,
+    translate: { y: -60 },
+  });
+
+  var bigCloudPuffB = new Zdog.Anchor({
+    addTo: cloudRotorB,
+    translate: { z: 88 },
+  });
+
+  new Zdog.Hemisphere({
+    addTo: bigCloudPuffB,
+    diameter: 36,
+    rotate: { x: TAU/4 },
+    color: cloudColor,
+    stroke: 6,
+  });
+
+  bigCloudPuff.copy({
+    addTo: bigCloudPuffB,
+    translate: { x: 16, y: -14, z: -4 },
+  });
+
+  disk.copy({
+    addTo: bigCloudPuffB,
+    width: 28,
+    height: 16,
+    cornerRadius: 8,
+    stroke: 10,
+    scale: 2,
+    translate: { x: 8, y: 2, z: 4 },
+  });
+
   // ------------------------- content ------------------------- //
 
   var house = ZdogSpookyHouse.addHouse({
@@ -868,6 +1241,11 @@ ZdogSpookyHouse.init = function( canvas ) {
 
   ZdogSpookyHouse.addBones({
     addTo: centerIsland,
+  });
+
+  var interiorScene = ZdogSpookyHouse.addInteriorScene({
+    addTo: house.shape,
+    translate: { z: 6 },
   });
 
   var fogMonster = ZdogSpookyHouse.addFogMonster({
