@@ -567,15 +567,18 @@ ZdogSpookyHouse.addHouse = function( options ) {
 };
 // ------------------------- getConeTree ------------------------- //
 
-ZdogSpookyHouse.getConeTree = function( options ) {
-  if (typeof Zdog === 'undefined') return null;
-
+// Define Zdog.extend once at the top level if it doesn't exist
+if (typeof Zdog !== 'undefined' && !Zdog.extend) {
   Zdog.extend = function( target, source ) {
     for ( var key in source ) {
       target[key] = source[key];
     }
     return target;
   };
+}
+
+ZdogSpookyHouse.getConeTree = function( options ) {
+  if (typeof Zdog === 'undefined') return null;
 
   Zdog.extend( options, {
     rotate: { x: Zdog.TAU/4 },
@@ -781,6 +784,79 @@ ZdogSpookyHouse.getGraveIsland = function( options ) {
   }
 
 })();
+
+// ------------------------- getLeafTree ------------------------- //
+
+( function() {
+
+  var TAU = Zdog.TAU;
+  var color = ZdogSpookyHouse.color;
+
+  var branchPath = [
+    { move: { x:   0, y:  14 }},
+    { line: { x: -12, y:   2 }},
+    { move: { x:  -4, y:  10 }},
+    { line: { x: -10, y:  10 }},
+    { move: { x:  -8, y:   6 }},
+    { line: { x:  -8, y:   0 }},
+    { line: { x: -12, y:  -4 }},
+    { move: { x:   0, y:   8 }},
+    { line: { x:  -4, y:   4 }},
+    { move: { x:   0, y:   2 }},
+    { line: { x: -10, y:  -8 }},
+    { move: { x:   0, y:  -4 }},
+    { line: { x:  -4, y:  -8 }},
+    { line: { x:  -4, y: -10 }},
+    { move: { x:   0, y:  12 }},
+    { line: { x:   6, y:   6 }},
+    { line: { x:  10, y:   6 }},
+    { move: { x:   2, y:  10 }},
+    { line: { x:   8, y:  10 }},
+    { move: { x:   0, y:   6 }},
+    { line: { x:  12, y:  -6 }},
+    { move: { x:   8, y:  -2 }},
+    { line: { x:   8, y:  -8 }},
+    { move: { x:   4, y:   2 }},
+    { line: { x:  12, y:   2 }},
+    { move: { x:   0, y:   0 }},
+    { line: { x:   4, y:  -4 }},
+    { move: { x:   0, y:  -6 }},
+    { line: { x:   4, y: -10 }},
+  ];
+
+  ZdogSpookyHouse.getLeafTree = function( options ) {
+    if (typeof Zdog === 'undefined') return null;
+    var trunkY = -options.height;
+    Object.assign( options, {
+      path: [ { y: 0 }, { y: trunkY - 26 } ],
+      stroke: 0.5,
+      color: color.deep,
+    });
+    var trunk = new Zdog.Shape( options );
+
+    var canopy = new Zdog.Anchor({
+      addTo: trunk,
+      translate: { y: trunkY - 14 },
+      rotate: { y: -TAU/8 },
+    });
+
+    var branchA = new Zdog.Shape({
+      addTo: canopy,
+      path: branchPath,
+      closed: false,
+      stroke: 0.6,
+      color: color.deep,
+    });
+
+    branchA.copyGraph({
+      rotate: { y: TAU/4 },
+    });
+
+    return trunk;
+  };
+
+})();
+
 // ------------------------- init ------------------------- //
 
 ZdogSpookyHouse.init = function( canvas ) {
@@ -1300,78 +1376,6 @@ ZdogSpookyHouse.init = function( canvas ) {
   animate();
 
 };
-
-// ------------------------- getLeafTree ------------------------- //
-
-( function() {
-
-  var TAU = Zdog.TAU;
-  var color = ZdogSpookyHouse.color;
-
-  var branchPath = [
-    { move: { x:   0, y:  14 }},
-    { line: { x: -12, y:   2 }},
-    { move: { x:  -4, y:  10 }},
-    { line: { x: -10, y:  10 }},
-    { move: { x:  -8, y:   6 }},
-    { line: { x:  -8, y:   0 }},
-    { line: { x: -12, y:  -4 }},
-    { move: { x:   0, y:   8 }},
-    { line: { x:  -4, y:   4 }},
-    { move: { x:   0, y:   2 }},
-    { line: { x: -10, y:  -8 }},
-    { move: { x:   0, y:  -4 }},
-    { line: { x:  -4, y:  -8 }},
-    { line: { x:  -4, y: -10 }},
-    { move: { x:   0, y:  12 }},
-    { line: { x:   6, y:   6 }},
-    { line: { x:  10, y:   6 }},
-    { move: { x:   2, y:  10 }},
-    { line: { x:   8, y:  10 }},
-    { move: { x:   0, y:   6 }},
-    { line: { x:  12, y:  -6 }},
-    { move: { x:   8, y:  -2 }},
-    { line: { x:   8, y:  -8 }},
-    { move: { x:   4, y:   2 }},
-    { line: { x:  12, y:   2 }},
-    { move: { x:   0, y:   0 }},
-    { line: { x:   4, y:  -4 }},
-    { move: { x:   0, y:  -6 }},
-    { line: { x:   4, y: -10 }},
-  ];
-
-  ZdogSpookyHouse.getLeafTree = function( options ) {
-    if (typeof Zdog === 'undefined') return null;
-    var trunkY = -options.height;
-    Object.assign( options, {
-      path: [ { y: 0 }, { y: trunkY - 26 } ],
-      stroke: 0.5,
-      color: color.deep,
-    });
-    var trunk = new Zdog.Shape( options );
-
-    var canopy = new Zdog.Anchor({
-      addTo: trunk,
-      translate: { y: trunkY - 14 },
-      rotate: { y: -TAU/8 },
-    });
-
-    var branchA = new Zdog.Shape({
-      addTo: canopy,
-      path: branchPath,
-      closed: false,
-      stroke: 0.6,
-      color: color.deep,
-    });
-
-    branchA.copyGraph({
-      rotate: { y: TAU/4 },
-    });
-
-    return trunk;
-  };
-
-})();
 
 // Initialize when Events section is shown
 (function() {
