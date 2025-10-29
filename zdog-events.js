@@ -565,6 +565,248 @@ ZdogSpookyHouse.addHouse = function( options ) {
   };
 
 };
+// ------------------------- addInteriorScene ------------------------- //
+
+ZdogSpookyHouse.addInteriorScene = function( options ) {
+  if (typeof Zdog === 'undefined') return { animate: function() {} };
+  
+  var color = ZdogSpookyHouse.color;
+  var TAU = Zdog.TAU;
+  var downLinePath = [ { y: 0 }, { y: 1 } ];
+
+  var interiorScene = new Zdog.Anchor({
+    addTo: options.addTo,
+    translate: options.translate,
+    rotate: options.rotate,
+  });
+
+  var furnitureColor = color.medium;
+  var tableWidth = 9;
+  var tableDepth = 4;
+  var tableStroke = 1.5;
+
+  // ----- table ----- //
+
+  var tableAnchor = new Zdog.Anchor({
+    addTo: interiorScene,
+    rotate: { z: 0.1 },
+  });
+
+  // table top
+  new Zdog.Rect({
+    addTo: tableAnchor,
+    width: tableWidth,
+    height: tableDepth,
+    rotate: { x: TAU/4 },
+    fill: true,
+    color: furnitureColor,
+    stroke: tableStroke,
+  });
+
+  var tableLeg = new Zdog.Shape({
+    addTo: tableAnchor,
+    path: downLinePath,
+    scale: 3,
+    translate: { x: -tableWidth/2, z: -tableDepth/2 },
+    color: furnitureColor,
+    stroke: tableStroke,
+  });
+  tableLeg.copy({
+    translate: { x: tableWidth/2, z: -tableDepth/2 },
+  });
+  tableLeg.copy({
+    translate: { x: tableWidth/2, z:  tableDepth/2 },
+  });
+  tableLeg.copy({
+    translate: { x: -tableWidth/2, z: tableDepth/2 },
+  });
+
+  // ----- monitor ----- //
+
+  var monitorWidth = 10;
+  var monitorHeight = 5;
+
+  var monitorAnchor = new Zdog.Anchor({
+    addTo: tableAnchor,
+    translate: { y: -8 },
+  });
+
+  var screenGroup = new Zdog.Group({
+    addTo: monitorAnchor,
+    rotate: { y: TAU/2 },
+  });
+  // screen bevel
+  var screenBevel = new Zdog.Rect({
+    addTo: screenGroup,
+    width: monitorWidth,
+    height: monitorHeight,
+    color: color.deep,
+    fill: true,
+    stroke: 1.5,
+  });
+  // screen display
+  new Zdog.Rect({
+    addTo: screenGroup,
+    width: monitorWidth - 0.5,
+    height: monitorHeight - 0.5,
+    color: color.highlight,
+    backface: false,
+    fill: true,
+    stroke: false,
+  });
+  // monitor stand base
+  screenBevel.copy({
+    addTo: monitorAnchor,
+    width: 5,
+    height: 2,
+    rotate: { x: TAU/4 },
+    translate: { y: 5 },
+  });
+  // monitor stand leg
+  new Zdog.Shape({
+    addTo: monitorAnchor,
+    path: downLinePath,
+    scale: 2,
+    translate: { y: 3.1 },
+    stroke: 1.5,
+    color: color.deep,
+  });
+
+  // ----- chair ----- //
+
+  var chairAnchor = new Zdog.Anchor({
+    addTo: interiorScene,
+    translate: { z: -15 },
+    rotate: { z: -0.1 },
+  });
+  // chair seat
+  new Zdog.Rect({
+    addTo: chairAnchor,
+    width: 3,
+    height: 3,
+    rotate: { x: TAU/4 },
+    fill: true,
+    stroke: tableStroke,
+    color: furnitureColor,
+  });
+  // chair stem
+  new Zdog.Shape({
+    addTo: chairAnchor,
+    path: downLinePath,
+    scale: 3,
+    stroke: tableStroke,
+    color: furnitureColor,
+  });
+  // chair leg
+  var chairLeg = new Zdog.Shape({
+    addTo: chairAnchor,
+    path: [ {}, { z: -2.5, y: 0.5 } ],
+    translate: { y: 3 },
+    stroke: 1,
+    color: furnitureColor,
+  });
+  chairLeg.copy({ rotate: { y: TAU/5 * 1 } });
+  chairLeg.copy({ rotate: { y: TAU/5 * 2 } });
+  chairLeg.copy({ rotate: { y: TAU/5 * 3 } });
+  chairLeg.copy({ rotate: { y: TAU/5 * 4 } });
+  // chair back
+  new Zdog.Rect({
+    addTo: chairAnchor,
+    width: 3,
+    height: 4,
+    translate: { z: -2.5, y: -2 },
+    rotate: { x: 0.2 },
+    stroke: tableStroke,
+    color: furnitureColor,
+    fill: true,
+  });
+
+  // ----- figure ----- //
+
+  var figureColor = color.deep;
+  var figureStroke = 1.5;
+  var waistX = 1;
+  var shoulderX = 1.5;
+  var shoulderY = -3;
+  var figureY = -6;
+
+  var figure = new Zdog.Anchor({
+    addTo: interiorScene,
+    translate: { z: -13, y: figureY },
+    scale: 0.6,
+  });
+  // torso
+  var torso = new Zdog.Shape({
+    addTo: figure,
+    path: [
+      { x: -waistX },
+      { x: -shoulderX, y: shoulderY },
+      { x:  shoulderX, y: shoulderY },
+      { x:  waistX },
+    ],
+    rotate: { x: 0.4 },
+    stroke: figureStroke,
+    color: figureColor,
+    fill: true,
+  });
+  // head
+  new Zdog.Shape({
+    addTo: torso,
+    path: downLinePath,
+    scale: -1,
+    translate: { y: shoulderY - 2.5 },
+    stroke: figureStroke + 1,
+    color: figureColor,
+  });
+  var arm = new Zdog.Shape({
+    addTo: torso,
+    path: [
+      {},
+      { y: 3 },
+      { z: 2, y: 4 },
+    ],
+    translate: { x: -shoulderX, y: shoulderY },
+    rotate: { x: 1, z: 0.5 },
+    scale: 1.25,
+    closed: false,
+    stroke: figureStroke,
+    color: figureColor,
+  });
+  arm.copy({
+    translate: { x: shoulderX, y: shoulderY },
+    rotate: { z: -1 },
+  });
+
+  var bum = new Zdog.Shape({
+    addTo: figure,
+    path: [ { x: -waistX }, { x: waistX } ],
+    translate: { y: 2, z: 0.5 },
+    stroke: figureStroke + 0.5,
+    color: figureColor,
+  });
+
+  var leg = arm.copy({
+    addTo: bum,
+    scale: { x: 1.75, y: 1.75, z: -1.75 },
+    translate: { x: -waistX - 0.5 },
+    rotate: { x: 1.8, z: 0.1 },
+  });
+  leg.copy({
+    translate: { x: waistX + 0.5 },
+    rotate: { x: 1, z: -0.2 },
+  });
+
+  function animate( progress ) {
+    tableAnchor.translate.y = Math.sin( progress * 6 ) * -1;
+    chairAnchor.translate.y = Math.sin( progress * 7 ) * 2;
+    figure.translate.y = Math.sin( progress * 8 ) * 2 + figureY;
+  }
+
+  return {
+    animate: animate,
+  };
+
+};
 // ------------------------- getConeTree ------------------------- //
 
 // Define Zdog.extend once at the top level if it doesn't exist
@@ -787,8 +1029,8 @@ ZdogSpookyHouse.getGraveIsland = function( options ) {
 
 // ------------------------- getLeafTree ------------------------- //
 
-( function() {
-  if (typeof Zdog === 'undefined') return;
+ZdogSpookyHouse.getLeafTree = function( options ) {
+  if (typeof Zdog === 'undefined') return null;
   
   var TAU = Zdog.TAU;
   var color = ZdogSpookyHouse.color;
@@ -825,38 +1067,34 @@ ZdogSpookyHouse.getGraveIsland = function( options ) {
     { line: { x:   4, y: -10 }},
   ];
 
-  ZdogSpookyHouse.getLeafTree = function( options ) {
-    if (typeof Zdog === 'undefined') return null;
-    var trunkY = -options.height;
-    Object.assign( options, {
-      path: [ { y: 0 }, { y: trunkY - 26 } ],
-      stroke: 0.5,
-      color: color.deep,
-    });
-    var trunk = new Zdog.Shape( options );
+  var trunkY = -options.height;
+  Object.assign( options, {
+    path: [ { y: 0 }, { y: trunkY - 26 } ],
+    stroke: 0.5,
+    color: color.deep,
+  });
+  var trunk = new Zdog.Shape( options );
 
-    var canopy = new Zdog.Anchor({
-      addTo: trunk,
-      translate: { y: trunkY - 14 },
-      rotate: { y: -TAU/8 },
-    });
+  var canopy = new Zdog.Anchor({
+    addTo: trunk,
+    translate: { y: trunkY - 14 },
+    rotate: { y: -TAU/8 },
+  });
 
-    var branchA = new Zdog.Shape({
-      addTo: canopy,
-      path: branchPath,
-      closed: false,
-      stroke: 0.6,
-      color: color.deep,
-    });
+  var branchA = new Zdog.Shape({
+    addTo: canopy,
+    path: branchPath,
+    closed: false,
+    stroke: 0.6,
+    color: color.deep,
+  });
 
-    branchA.copyGraph({
-      rotate: { y: TAU/4 },
-    });
+  branchA.copyGraph({
+    rotate: { y: TAU/4 },
+  });
 
-    return trunk;
-  };
-
-})();
+  return trunk;
+};
 
 // ------------------------- init ------------------------- //
 
@@ -1414,11 +1652,14 @@ ZdogSpookyHouse.init = function( canvas ) {
     
     try {
       console.log('Initializing Zdog Spooky House...');
+      console.log('Canvas element:', zdogCanvas);
+      console.log('ZdogSpookyHouse.init:', typeof ZdogSpookyHouse.init);
       ZdogSpookyHouse.init(zdogCanvas);
       isInitialized = true;
       console.log('Zdog initialized successfully');
     } catch(e) {
       console.error('Error initializing Zdog:', e);
+      console.error('Stack:', e.stack);
     }
   }
 
