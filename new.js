@@ -564,7 +564,7 @@ function navigateToSection(href) {
             initNavigation();
         });
     } else {
-        showMainPage();
+        window.showMainPage();
         initNavigation();
     }
 })();
