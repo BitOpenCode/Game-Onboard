@@ -1,5 +1,5 @@
 // namespace
-window.ZdogSpookyHouse = {
+window.ZdogSpookyHouse = window.ZdogSpookyHouse || {
   wobbling: true,
   sceneY: 12,
   hillScale: 0.75,
@@ -19,6 +19,7 @@ window.ZdogSpookyHouse = {
 // ------------------------- bones ------------------------- //
 
 ZdogSpookyHouse.addBones = function( options ) {
+  if (typeof Zdog === 'undefined' || typeof window === 'undefined' || !window.ZdogSpookyHouse) return;
   var TAU = Zdog.TAU;
   var lineX = 2;
   var color = ZdogSpookyHouse.color.light;
@@ -82,6 +83,7 @@ ZdogSpookyHouse.addBones = function( options ) {
 // ------------------------- car & road ------------------------- //
 
 ZdogSpookyHouse.addCarRoad = function( options ) {
+  if (typeof Zdog === 'undefined') return { animate: function() {} };
   var color = ZdogSpookyHouse.color;
   var TAU = Zdog.TAU;
 
@@ -211,9 +213,10 @@ ZdogSpookyHouse.addCarRoad = function( options ) {
   });
 
   function animate( progress ) {
-    carRotor.rotate.y = Zdog.easeInOut( progress/4 % 1 ) * Zdog.TAU + Zdog.TAU * 3/8;
-    carAnchor.rotate.x = Math.sin( progress * Zdog.TAU * 2 ) * 0.1;
-    carAnchor.translate.y = Math.sin( progress * Zdog.TAU * 1.5 ) * 2 + carAnchorY;
+    var TAU = Zdog.TAU;
+    carRotor.rotate.y = Zdog.easeInOut( progress/4 % 1 ) * TAU + TAU * 3/8;
+    carAnchor.rotate.x = Math.sin( progress * TAU * 2 ) * 0.1;
+    carAnchor.translate.y = Math.sin( progress * TAU * 1.5 ) * 2 + carAnchorY;
   }
 
   return {
@@ -224,6 +227,7 @@ ZdogSpookyHouse.addCarRoad = function( options ) {
 // ------------------------- cats ------------------------- //
 
 ZdogSpookyHouse.addCats = function( options ) {
+  if (typeof Zdog === 'undefined') return;
   var TAU = Zdog.TAU;
   var color = ZdogSpookyHouse.color;
 
@@ -321,6 +325,7 @@ ZdogSpookyHouse.addCats = function( options ) {
 // ------------------------- fogMonster ------------------------- //
 
 ZdogSpookyHouse.addFogMonster = function( options ) {
+  if (typeof Zdog === 'undefined') return { animate: function() {} };
   var TAU = Zdog.TAU;
   var color = ZdogSpookyHouse.color;
 
@@ -388,9 +393,9 @@ ZdogSpookyHouse.addFogMonster = function( options ) {
   };
 
 };
-// ------------------------- addHouse ------------------------- //
 
 ZdogSpookyHouse.addHouse = function( options ) {
+  if (typeof Zdog === 'undefined') return { shape: null, animate: function() {} };
 
   var TAU = Zdog.TAU;
   var color = ZdogSpookyHouse.color;
@@ -563,6 +568,7 @@ ZdogSpookyHouse.addHouse = function( options ) {
 // ------------------------- getConeTree ------------------------- //
 
 ZdogSpookyHouse.getConeTree = function( options ) {
+  if (typeof Zdog === 'undefined') return null;
 
   Zdog.extend = function( target, source ) {
     for ( var key in source ) {
@@ -589,6 +595,7 @@ ZdogSpookyHouse.getConeTree = function( options ) {
 // ------------------------- getGraveIsland ------------------------- //
 
 ZdogSpookyHouse.getGraveIsland = function( options ) {
+  if (typeof Zdog === 'undefined') return null;
   var TAU = Zdog.TAU;
   var color = ZdogSpookyHouse.color;
 
@@ -657,6 +664,7 @@ ZdogSpookyHouse.getGraveIsland = function( options ) {
   ];
 
   ZdogSpookyHouse.getPyramid = function( options ) {
+    if (typeof Zdog === 'undefined') return null;
 
     var pyramid = new Zdog.Anchor({
       addTo: options.addTo,
@@ -717,6 +725,7 @@ ZdogSpookyHouse.getGraveIsland = function( options ) {
       'backface' ];
 
   ZdogSpookyHouse.getWallPanel = function( options ) {
+    if (typeof Zdog === 'undefined') return null;
     var wallPanel;
     if ( !options.pane ) {
       wallPanel = new Zdog.Rect( options.wall );
@@ -775,6 +784,7 @@ ZdogSpookyHouse.getGraveIsland = function( options ) {
 // ------------------------- init ------------------------- //
 
 ZdogSpookyHouse.init = function( canvas ) {
+  if (typeof Zdog === 'undefined') return;
   var TAU = Zdog.TAU;
   var color = ZdogSpookyHouse.color;
 
@@ -943,6 +953,7 @@ ZdogSpookyHouse.init = function( canvas ) {
   ];
 
   ZdogSpookyHouse.getLeafTree = function( options ) {
+    if (typeof Zdog === 'undefined') return null;
     var trunkY = -options.height;
     Object.assign( options, {
       path: [ { y: 0 }, { y: trunkY - 26 } ],
@@ -1012,4 +1023,5 @@ ZdogSpookyHouse.init = function( canvas ) {
   // Expose init function globally
   window.initZdogEvents = initZdog;
 })();
+
 
