@@ -93,9 +93,9 @@
             })
         }
 
-        //Swiper Testimonial - only if container exists
+        //Swiper Testimonial - only if container exists and Swiper is loaded
         const testimonialsContainer = document.querySelector(".testimonials-container");
-        if (testimonialsContainer) {
+        if (testimonialsContainer && typeof Swiper !== 'undefined') {
             let swiper = new Swiper(".testimonials-container", {
                 spaceBetween: 24,
                 loop: true,
@@ -440,10 +440,10 @@ function navigateToSection(href) {
         console.log('Section ID:', sectionId);
         
         if (sectionId === 'home') {
-            showMainPage();
+            window.showMainPage();
         } else if (contentSections.includes(sectionId)) {
             console.log('Calling showSection for:', sectionId);
-            showSection(sectionId);
+            window.showSection(sectionId);
         }
     }
 }
