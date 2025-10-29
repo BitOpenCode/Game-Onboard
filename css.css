@@ -132,6 +132,23 @@ button { cursor: pointer; }
     padding: 2rem;
 }
 
+.events-wrapper {
+    max-width: 100%;
+    padding: 2rem 0;
+    background: #1B2838;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+}
+
+.zdog-canvas {
+    display: block;
+    margin: 0 auto;
+    cursor: move;
+    background: #1B2838;
+}
+
 .content-wrapper h3 {
     font-size: var(--h2-font-size);
     margin-bottom: var(--mb2);
