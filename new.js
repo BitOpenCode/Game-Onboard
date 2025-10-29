@@ -302,10 +302,11 @@ const contentSections = ['welcome', 'assets', 'tips', 'guides', 'community', 'vi
 // Test function - can be called from console
 window.testShowAssets = function() {
     console.log('TEST: Showing assets section');
-    showSection('assets');
+    window.showSection('assets');
 };
 
-function showSection(sectionId) {
+// Make showSection globally available
+window.showSection = function(sectionId) {
     console.log('=== SHOW SECTION ===', sectionId);
     
     // Hide main sections first
@@ -389,7 +390,8 @@ function showSection(sectionId) {
     }
 }
 
-function showMainPage() {
+// Make showMainPage globally available
+window.showMainPage = function() {
     console.log('=== SHOW MAIN PAGE ===');
     
     // Hide all content sections with !important
@@ -459,9 +461,9 @@ function navigateToSection(href) {
                 if (href && href.startsWith('#')) {
                     const sectionId = href.substring(1);
                     if (sectionId === 'home') {
-                        showMainPage();
+                        window.showMainPage();
                     } else if (contentSections.includes(sectionId)) {
-                        showSection(sectionId);
+                        window.showSection(sectionId);
                     }
                 }
             });
@@ -475,9 +477,9 @@ function navigateToSection(href) {
                 if (href && href.startsWith('#')) {
                     const sectionId = href.substring(1);
                     if (sectionId === 'home') {
-                        showMainPage();
+                        window.showMainPage();
                     } else if (contentSections.includes(sectionId)) {
-                        showSection(sectionId);
+                        window.showSection(sectionId);
                     }
                 }
             });
@@ -523,10 +525,10 @@ function navigateToSection(href) {
                         console.log('Is in content sections?', contentSections.includes(sectionId));
                         
                         if (sectionId === 'home') {
-                            showMainPage();
+                            window.showMainPage();
                         } else if (contentSections.includes(sectionId)) {
                             console.log('Calling showSection with:', sectionId);
-                            showSection(sectionId);
+                            window.showSection(sectionId);
                         } else {
                             console.error('Section not in list:', sectionId);
                             console.error('Available sections:', contentSections);
@@ -558,7 +560,7 @@ function navigateToSection(href) {
     // Run when DOM is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => {
-            showMainPage();
+            window.showMainPage();
             initNavigation();
         });
     } else {
