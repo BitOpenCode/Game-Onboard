@@ -691,6 +691,7 @@ ZdogSpookyHouse.init = function( canvas ) {
 // Initialize when Events section is shown
 (function() {
   var zdogCanvas = null;
+  var illo = null;
   var isInitialized = false;
 
   function initZdog() {
@@ -698,29 +699,44 @@ ZdogSpookyHouse.init = function( canvas ) {
     
     zdogCanvas = document.querySelector('#events .zdog-canvas');
     if (zdogCanvas && typeof Zdog !== 'undefined') {
-      ZdogSpookyHouse.init(zdogCanvas);
-      isInitialized = true;
+      try {
+        ZdogSpookyHouse.init(zdogCanvas);
+        isInitialized = true;
+      } catch(e) {
+        console.error('Error initializing Zdog:', e);
+      }
+    }
+  }
+
+  // Wait for Zdog to load
+  function checkZdog() {
+    if (typeof Zdog !== 'undefined') {
+      setTimeout(initZdog, 500);
+    } else {
+      setTimeout(checkZdog, 100);
     }
   }
 
   // Try to init when DOM is ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
-      setTimeout(initZdog, 1000);
-    });
+    document.addEventListener('DOMContentLoaded', checkZdog);
   } else {
-    setTimeout(initZdog, 1000);
+    checkZdog();
   }
 
   // Also try when Events section is shown
   var originalShowSection = window.showSection;
-  if (originalShowSection) {
+  if (typeof window.showSection === 'function') {
     window.showSection = function(sectionId) {
-      originalShowSection.call(this, sectionId);
+      var result = originalShowSection.call(this, sectionId);
       if (sectionId === 'events') {
         setTimeout(initZdog, 500);
       }
+      return result;
     };
   }
+
+  // Expose init function globally
+  window.initZdogEvents = initZdog;
 })();
 

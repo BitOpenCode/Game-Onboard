@@ -373,6 +373,13 @@ function showSection(sectionId) {
         setTimeout(() => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }, 100);
+        
+        // Initialize Zdog for Events section
+        if (sectionId === 'events' && typeof window.initZdogEvents === 'function') {
+            setTimeout(() => {
+                window.initZdogEvents();
+            }, 300);
+        }
     } else {
         console.error('SECTION NOT FOUND:', sectionId);
         console.error('Checking all sections with IDs:');
