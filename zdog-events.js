@@ -788,7 +788,8 @@ ZdogSpookyHouse.getGraveIsland = function( options ) {
 // ------------------------- getLeafTree ------------------------- //
 
 ( function() {
-
+  if (typeof Zdog === 'undefined') return;
+  
   var TAU = Zdog.TAU;
   var color = ZdogSpookyHouse.color;
 
