@@ -989,38 +989,47 @@ ZdogSpookyHouse.init = function( canvas ) {
 (function() {
   var zdogCanvas = null;
   var isInitialized = false;
+  var zdogIllo = null;
 
   function initZdog() {
-    if (isInitialized) return;
+    if (isInitialized) {
+      console.log('Zdog already initialized');
+      return;
+    }
+    
+    // Wait for Zdog library to load
+    if (typeof Zdog === 'undefined') {
+      console.warn('Zdog library not loaded yet, waiting...');
+      setTimeout(initZdog, 100);
+      return;
+    }
     
     zdogCanvas = document.querySelector('#events .zdog-canvas');
-    if (zdogCanvas && typeof Zdog !== 'undefined') {
-      try {
-        ZdogSpookyHouse.init(zdogCanvas);
-        isInitialized = true;
-      } catch(e) {
-        console.error('Error initializing Zdog:', e);
-      }
+    if (!zdogCanvas) {
+      console.warn('Canvas not found, waiting...');
+      setTimeout(initZdog, 100);
+      return;
+    }
+    
+    // Make sure section is visible
+    const eventsSection = document.getElementById('events');
+    if (eventsSection && window.getComputedStyle(eventsSection).display === 'none') {
+      console.warn('Events section is hidden, waiting...');
+      setTimeout(initZdog, 100);
+      return;
+    }
+    
+    try {
+      console.log('Initializing Zdog Spooky House...');
+      ZdogSpookyHouse.init(zdogCanvas);
+      isInitialized = true;
+      console.log('Zdog initialized successfully');
+    } catch(e) {
+      console.error('Error initializing Zdog:', e);
     }
   }
 
-  // Wait for Zdog to load
-  function checkZdog() {
-    if (typeof Zdog !== 'undefined') {
-      setTimeout(initZdog, 500);
-    } else {
-      setTimeout(checkZdog, 100);
-    }
-  }
-
-  // Try to init when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', checkZdog);
-  } else {
-    checkZdog();
-  }
-
-  // Expose init function globally
+  // Expose init function globally - will be called when Events section is shown
   window.initZdogEvents = initZdog;
 })();
 
