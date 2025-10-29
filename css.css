@@ -130,12 +130,13 @@ button { cursor: pointer; }
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem;
+    color: var(--text-color);
 }
 
 .events-wrapper {
     max-width: 100%;
     padding: 2rem 0;
-    background: #1B2838;
+    background: var(--body-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -146,7 +147,7 @@ button { cursor: pointer; }
     display: block;
     margin: 0 auto;
     cursor: move;
-    background: #1B2838;
+    background: var(--body-color);
 }
 
 .content-wrapper h3 {
@@ -158,6 +159,7 @@ button { cursor: pointer; }
 .content-wrapper p {
     margin-bottom: var(--mb1);
     line-height: 1.8;
+    color: var(--text-color);
 }
 
 .content-wrapper ul {
@@ -170,6 +172,7 @@ button { cursor: pointer; }
     padding: 0.5rem 0;
     padding-left: 1.5rem;
     position: relative;
+    color: var(--text-color);
 }
 
 .content-wrapper ul li::before {
@@ -178,6 +181,509 @@ button { cursor: pointer; }
     left: 0;
     color: var(--skin-color);
     font-weight: bold;
+}
+
+/* Content sections styling */
+.content-wrapper h4 {
+    font-size: var(--h3-font-size);
+    margin: var(--mb2) 0 var(--mb1);
+    color: var(--title-color);
+    font-weight: var(--font-bold);
+}
+
+.content-wrapper strong {
+    color: var(--title-color);
+    font-weight: var(--font-bold);
+}
+
+.content-wrapper ol {
+    list-style: decimal;
+    padding-left: 2rem;
+    margin: var(--mb2) 0;
+}
+
+.content-wrapper ol li {
+    padding: 0.5rem 0;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+/* Welcome Bonus styles - Bento Style */
+.welcome-assets,
+.welcome-how,
+.welcome-tips,
+.welcome-note {
+    margin: var(--mb2) 0;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(28, 92%, 50%, 0.1) 0%, rgba(28, 92%, 50%, 0.05) 100%);
+    backdrop-filter: blur(10px);
+    border-radius: 1.25rem;
+    border: 1px solid rgba(255, 111, 0, 0.2);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-assets::before,
+.welcome-how::before,
+.welcome-tips::before,
+.welcome-note::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--skin-color) 0%, #ff9000 100%);
+    border-radius: 0 4px 4px 0;
+}
+
+.welcome-assets:hover,
+.welcome-how:hover,
+.welcome-tips:hover,
+.welcome-note:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+        0 12px 40px rgba(255, 111, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 111, 0, 0.4);
+}
+
+.bonus-assets-list {
+    margin: var(--mb1) 0;
+}
+
+.bonus-value {
+    margin-top: var(--mb1);
+    font-size: 1.1rem;
+    color: var(--skin-color);
+}
+
+/* Assets section styles - Bento Style */
+.assets-category {
+    margin: var(--mb3) 0;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(28, 92%, 50%, 0.1) 0%, rgba(28, 92%, 50%, 0.05) 100%);
+    backdrop-filter: blur(10px);
+    border-radius: 1.25rem;
+    border: 1px solid rgba(255, 111, 0, 0.2);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.assets-category::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--skin-color) 0%, #ff9000 100%);
+    border-radius: 0 4px 4px 0;
+}
+
+.assets-category:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+        0 12px 40px rgba(255, 111, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 111, 0, 0.4);
+}
+
+.assets-list-tradeable li,
+.assets-list-currency li {
+    margin: 0.75rem 0;
+    line-height: 1.8;
+}
+
+.marketplace-info {
+    margin-top: var(--mb1);
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(255, 111, 0, 0.15) 0%, rgba(255, 144, 0, 0.1) 100%);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 111, 0, 0.3);
+    box-shadow: 0 4px 20px rgba(255, 111, 0, 0.2);
+}
+
+.risk-disclaimer {
+    margin-top: var(--mb1);
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(255, 152, 0, 0.2) 0%, rgba(255, 152, 0, 0.1) 100%);
+    backdrop-filter: blur(10px);
+    border-radius: 1.25rem;
+    border: 2px solid rgba(255, 152, 0, 0.4);
+    box-shadow: 
+        0 8px 32px rgba(255, 152, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.disclaimer-small {
+    font-size: 0.9rem;
+    margin-top: var(--mb1);
+    color: var(--text-color);
+}
+
+.disclaimer-small a {
+    color: var(--skin-color);
+    text-decoration: underline;
+}
+
+/* Tips & Tricks styles - Bento Style */
+.tip-category {
+    margin: var(--mb2) 0;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(28, 92%, 50%, 0.1) 0%, rgba(28, 92%, 50%, 0.05) 100%);
+    backdrop-filter: blur(10px);
+    border-radius: 1.25rem;
+    border: 1px solid rgba(255, 111, 0, 0.2);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.tip-category::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--skin-color) 0%, #ff9000 100%);
+    border-radius: 0 4px 4px 0;
+}
+
+.tip-category:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+        0 12px 40px rgba(255, 111, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 111, 0, 0.4);
+}
+
+.tip-category h4 {
+    margin-bottom: var(--mb1);
+}
+
+/* Guides styles - Bento Style */
+.guide-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--mb2);
+    margin: var(--mb2) 0;
+}
+
+.guide-item {
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(28, 92%, 50%, 0.1) 0%, rgba(28, 92%, 50%, 0.05) 100%);
+    backdrop-filter: blur(10px);
+    border-radius: 1.25rem;
+    border: 1px solid rgba(255, 111, 0, 0.2);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.guide-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--skin-color) 0%, #ff9000 100%);
+    border-radius: 0 4px 4px 0;
+}
+
+.guide-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+        0 12px 40px rgba(255, 111, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 111, 0, 0.4);
+}
+
+.guide-item h4 {
+    margin-bottom: var(--mb1);
+}
+
+/* Community styles - Bento Style */
+.community-links {
+    margin: var(--mb2) 0;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(28, 92%, 50%, 0.1) 0%, rgba(28, 92%, 50%, 0.05) 100%);
+    backdrop-filter: blur(10px);
+    border-radius: 1.25rem;
+    border: 1px solid rgba(255, 111, 0, 0.2);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.social-platforms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: var(--mb1);
+}
+
+.community-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--skin-color) 0%, #ff9000 100%);
+    color: white;
+    border-radius: 3rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 111, 0, 0.4);
+    font-weight: 600;
+}
+
+.community-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 111, 0, 0.6);
+}
+
+.community-link i {
+    font-size: 1.3rem;
+}
+
+.community-features,
+.community-rules {
+    margin: var(--mb2) 0;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(28, 92%, 50%, 0.1) 0%, rgba(28, 92%, 50%, 0.05) 100%);
+    backdrop-filter: blur(10px);
+    border-radius: 1.25rem;
+    border: 1px solid rgba(255, 111, 0, 0.2);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.community-features::before,
+.community-rules::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--skin-color) 0%, #ff9000 100%);
+    border-radius: 0 4px 4px 0;
+}
+
+.community-features:hover,
+.community-rules:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+        0 12px 40px rgba(255, 111, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 111, 0, 0.4);
+}
+
+/* Visualizer styles - Bento Style */
+.visualizer-features,
+.visualizer-stats,
+.visualizer-actions {
+    margin: var(--mb2) 0;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(28, 92%, 50%, 0.1) 0%, rgba(28, 92%, 50%, 0.05) 100%);
+    backdrop-filter: blur(10px);
+    border-radius: 1.25rem;
+    border: 1px solid rgba(255, 111, 0, 0.2);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.visualizer-features::before,
+.visualizer-stats::before,
+.visualizer-actions::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--skin-color) 0%, #ff9000 100%);
+    border-radius: 0 4px 4px 0;
+}
+
+.visualizer-features:hover,
+.visualizer-stats:hover,
+.visualizer-actions:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+        0 12px 40px rgba(255, 111, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 111, 0, 0.4);
+}
+
+.visualizer-note {
+    margin-top: var(--mb2);
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(255, 111, 0, 0.15) 0%, rgba(255, 144, 0, 0.1) 100%);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 111, 0, 0.3);
+    box-shadow: 0 4px 20px rgba(255, 111, 0, 0.2);
+}
+
+/* BTC Game Pools styles - Bento Style */
+.pools-overview,
+.pools-benefits,
+.pools-how,
+.pools-tips {
+    margin: var(--mb2) 0;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(28, 92%, 50%, 0.1) 0%, rgba(28, 92%, 50%, 0.05) 100%);
+    backdrop-filter: blur(10px);
+    border-radius: 1.25rem;
+    border: 1px solid rgba(255, 111, 0, 0.2);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.pools-overview::before,
+.pools-benefits::before,
+.pools-how::before,
+.pools-tips::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--skin-color) 0%, #ff9000 100%);
+    border-radius: 0 4px 4px 0;
+}
+
+.pools-overview:hover,
+.pools-benefits:hover,
+.pools-how:hover,
+.pools-tips:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+        0 12px 40px rgba(255, 111, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 111, 0, 0.4);
+}
+
+/* Ambassador Program styles - Bento Style */
+.ambassador-benefits,
+.ambassador-requirements,
+.ambassador-how {
+    margin: var(--mb2) 0;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(28, 92%, 50%, 0.1) 0%, rgba(28, 92%, 50%, 0.05) 100%);
+    backdrop-filter: blur(10px);
+    border-radius: 1.25rem;
+    border: 1px solid rgba(255, 111, 0, 0.2);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.ambassador-benefits::before,
+.ambassador-requirements::before,
+.ambassador-how::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--skin-color) 0%, #ff9000 100%);
+    border-radius: 0 4px 4px 0;
+}
+
+.ambassador-benefits:hover,
+.ambassador-requirements:hover,
+.ambassador-how:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+        0 12px 40px rgba(255, 111, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 111, 0, 0.4);
+}
+
+.ambassador-disclaimer {
+    margin: var(--mb2) 0;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(255, 152, 0, 0.2) 0%, rgba(255, 152, 0, 0.1) 100%);
+    backdrop-filter: blur(10px);
+    border-radius: 1.25rem;
+    border: 2px solid rgba(255, 152, 0, 0.4);
+    box-shadow: 
+        0 8px 32px rgba(255, 152, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.disclaimer-note {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+/* Leaderboard styles */
+.leaderboard-categories,
+.leaderboard-rewards,
+.leaderboard-strategy,
+.leaderboard-info {
+    margin: var(--mb2) 0;
+    padding: 1.5rem;
+    background: var(--box-color);
+    border-radius: 0.75rem;
+    border-left: 3px solid var(--skin-color);
+}
+
+.reward-disclaimer {
+    margin-top: var(--mb1);
+    padding: 1rem;
+    background: rgba(255, 152, 0, 0.1);
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* City Screen styles */
+.city-features,
+.city-buildings,
+.city-strategy,
+.city-progression {
+    margin: var(--mb2) 0;
+    padding: 1.5rem;
+    background: var(--box-color);
+    border-radius: 0.75rem;
+    border-left: 3px solid var(--skin-color);
 }
 ::-webkit-scrollbar { width: 0.6rem; background-color: var(--scroll-box-color); border-radius: .5rem; }
 ::-webkit-scrollbar-thumb { background-color: var(--scroll-thumb-color); border-radius: .5rem; }
