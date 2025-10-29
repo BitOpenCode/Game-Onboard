@@ -1282,8 +1282,15 @@ ZdogSpookyHouse.init = function( canvas ) {
     fogMonster.animate( progress );
     carRoad.animate( progress );
     house.animate( progress, illo.rotate );
+    interiorScene.animate( progress );
+    cloudRotorA.rotate.y = progress * TAU/12;
+    cloudRotorB.rotate.y = progress * TAU/16;
     // bob islands
     centerIsland.translate.y = Math.sin( progress/4 * TAU ) * 4;
+    eastIsland.translate.y = Math.sin( progress/1.5 * TAU ) * -4;
+    westIsland.translate.y = Math.sin( progress/2.5 * TAU ) * -4;
+    northIsland.translate.y = Math.sin( progress/3 * TAU ) * 4;
+    southIsland.translate.y = Math.sin( progress/2 * TAU ) * 4;
 
     ticker++;
     illo.updateRenderGraph();
